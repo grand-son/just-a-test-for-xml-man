@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+  <!-- Text-node contexts -->
+  <case id="1"  desc="plain text marker">
+    <text>__XSS_MARKER__</text>
+  </case>
+  <case id="2"  desc="angle-brackets escaped">
+    <text>&lt;img src=x onerror=__XSS_MARKER__/&gt;</text>
+  </case>
+  <case id="3"  desc="closing tag break-out">
+    <text>]</text><text>]]></text>
+  </case>
+
+  <!-- HTML attribute contexts (double/single/unquoted) -->
+  <case id="4"  desc="double-quote attribute break-out">
+    <item name="x&quot; __XSS_MARKER__=&quot;1" value="ok"/>
+  </case>
+  <case id="5"  desc="single-quote attribute break-out">
+    <item data='y&apos; __XSS_MARKER__=&apos;1' value='ok'/>
+  </case>
+  <case id="6"  desc="unquoted attribute break-out">
+    <item k=z __XSS_MARKER__=1 value=ok />
+  </case>
+
+  <!-- URL/Link contexts -->
+  <case id="7"  desc="javascript URL literal (string, not executable)">
+    <url>javascript:__XSS_MARKER__</url>
+  </case>
+  <case id="8"  desc="data URL literal (string)">
+    <url>data:text/html,__XSS_MARKER__</url>
+  </case>
+  <case id="9"  desc="querystring injection">
+    <url>https://example.test/?q=__XSS_MARKER__</url>
+  </case>
+  <case id="10" desc="path injection">
+    <url>/search/__XSS_MARKER__/results</url>
+  </case>
+
+  <!-- CSS contexts (if app inlines these into style attributes/blocks) -->
+  <case id="11" desc="style attribute break-out">
+    <styleAttr>color: red; background: url("__XSS_MARKER__");</styleAttr>
+  </case>
+  <case id="12" desc="CSS block content">
+    <css>body{--token:"__XSS_MARKER__"}</css>
+  </case>
+
+  <!-- JS-string and JSON-string contexts (if app serializes XML into JS/JSON) -->
+  <case id="13" desc="JS single-quoted string">
+    <js>var s='__XSS_MARKER__';</js>
+  </case>
+  <case id="14" desc="JS double-quoted string with escape">
+    <js>var s="__XSS_MARKER__\u0022";</js>
+  </case>
+  <case id="15" desc="JSON value">
+    <json>{"note":"__XSS_MARKER__"}</json>
+  </case>
+
+  <!-- Encodings / entity variants -->
+  <case id="16" desc="HTML entity-encoded">
+    <text>&amp;lt;div&amp;gt;__XSS_MARKER__&amp;lt;/div&amp;gt;</text>
+  </case>
+  <case id="17" desc="numeric char refs">
+    <text>&#60;span&#62;__XSS_MARKER__&#60;/span&#62;</text>
+  </case>
+  <case id="18" desc="unicode lookalikes">
+    <text>__ＸＳＳ＿ＭＡＲＫＥＲ__</text>
+  </case>
+
+  <!-- Attribute-heavy XML (parser edge cases) -->
+  <case id="19" desc="long attribute and unusual whitespace">
+    <blob a="__XSS_MARKER__                                                " b="x&#x0A;__XSS_MARKER__" c="x&#x09;__XSS_MARKER__"/>
+  </case>
+
+  <!-- CDATA (to see how apps re-escape or strip) -->
+  <case id="20" desc="CDATA wrapper">
+    <cdata><![CDATA[ <b>__XSS_MARKER__</b> ]]></cdata>
+  </case>
+</tests>
