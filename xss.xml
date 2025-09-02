@@ -1,27 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <import>
-  <user>
-    <id>123</id>
-    <username>__XSS_MARKER__</username>
-    <email>test__XSS_MARKER__@example.com</email>
-  </user>
-
-  <product>
-    <name>__XSS_MARKER__</name>
-    <description><![CDATA[__XSS_MARKER__ <b>test</b>]]></description>
-    <meta title="__XSS_MARKER__" data="__XSS_MARKER__"/>
-  </product>
-
-  <order id="999">
-    <comment>Order comment: __XSS_MARKER__</comment>
-    <notes>
-      <note>Plain text __XSS_MARKER__</note>
-      <note>&lt;img src=x onerror=__XSS_MARKER__/&gt;</note>
-    </notes>
-  </order>
-
-  <settings>
-    <option key="color">__XSS_MARKER__</option>
-    <option key="redirect">https://example.com/?q=__XSS_MARKER__</option>
-  </settings>
+  <item>
+    <title>" onmouseover="alert(1)</title>
+    <class>test" style="background:red" x="</class>
+    <style>color:expression(alert(1))</style>
+    <data><![CDATA[<img src=x onerror=alert(1)>]]></data>
+  </item>
 </import>
