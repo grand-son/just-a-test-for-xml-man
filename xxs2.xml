@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<import>
+  <item>
+    <!-- 1. Basic attribute breaker -->
+    <title>" onmouseover="alert(1)" x="</title>
+
+    <!-- 2. Encoded quote bypass -->
+    <class>&quot; onmouseenter=&quot;alert(2)&quot;</class>
+    <class>&#34; onfocus=alert(3) x=&#34;</class>
+
+    <!-- 3. Style injection -->
+    <style>color:red;background:url(javascript:alert(4))</style>
+    <style>width:expression(alert(5))</style>
+
+    <!-- 4. Closing span polyglot -->
+    <data></span><img src=x onerror=alert(6)><span></data>
+
+    <!-- 5. Unicode homoglyphs for < > -->
+    <p>＜img src=x onerror=alert(7)＞</p>
+
+    <!-- 6. JSON/string breaking style -->
+    <value>"}];alert(8);//</value>
+  </item>
+</import>
