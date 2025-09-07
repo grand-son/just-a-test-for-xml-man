@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
+<!-- Embed an image -->
+<image href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3wxJ0c-jC6VcDASO9aiDWD9zWAeJLKrS5gg&s"/>
+
+<!-- Safe test script -->
+<script type="text/javascript">
+const testValue = localStorage.getItem("test_key") || "no data";
+console.log("SVG executed! test_key value:", testValue);
+alert("SVG executed! Check console for test_key value");
+</script>
+</svg>
