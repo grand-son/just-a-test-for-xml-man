@@ -1,11 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
-<!-- Embed an image -->
-<image href="https://github.com/grand-son/just-a-test-for-xml-man/blob/main/anonymousexif.png"/>
-
-<!-- Safe test script -->
-<script type="text/javascript">
-const testValue = localStorage.getItem("test_key") || "no data";
-console.log("SVG executed! test_key value:", testValue);
-alert("SVG executed! Check console for test_key value");
-</script>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg onload="
+  const value = localStorage.getItem('test_key') || 'no data';
+  console.log('SVG executed! test_key value:', value);
+  alert('SVG executed! Check console');
+" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <font id="x">
+      <font-face font-family="y"/>
+    </font>
+  </defs>
 </svg>
